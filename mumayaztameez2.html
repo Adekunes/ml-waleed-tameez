@@ -23,6 +23,7 @@
             overflow: hidden;
             width: 100%;
             max-width: 1200px;
+            padding: 20px;
         }
         table {
             width: 100%;
@@ -53,6 +54,33 @@
             text-align: center;
             color: #2c3e50;
             margin-bottom: 20px;
+        }
+        .side-note {
+            font-size: 1em;
+            color: #2c3e50;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 20px;
+        }
+        .side-note .title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #2980b9;
+        }
+        .side-note .content {
+            color: #7f8c8d;
+        }
+        .side-note .translation {
+            font-style: italic;
+            color: #95a5a6;
+            margin-top: 10px;
+            display: block;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
         }
     </style>
 </head>
@@ -118,37 +146,40 @@
                     <td>مفرد منصوب</td>
                 </tr>
                 <tr>
-                    <td class="number">١٠٠، ٢٠٠، ٣٠٠، إلخ</td>
-                    <td>مضاف إليه</td>
-                    <td>لا يتغير</td>
-                    <td>مفرد مجرور</td>
-                </tr>
-                <tr>
-                    <td class="number">٣٠٠ (ثلاثمائة)</td>
-                    <td>مضاف إليه</td>
-                    <td>لا يتغير</td>
-                    <td>مفرد مجرور</td>
-                </tr>
-                <tr>
-                    <td class="number">٢٠٠ (مائتان)</td>
-                    <td>مضاف إليه</td>
-                    <td>لا يتغير</td>
-                    <td>مفرد مجرور</td>
-                </tr>
-                <tr>
-                    <td class="number">٣٠٠٠ (ثلاثة آلاف)</td>
-                    <td>مضاف إليه</td>
-                    <td>لا يتغير</td>
-                    <td>مفرد مجرور</td>
-                </tr>
-                <tr>
-                    <td class="number">٢٠٠٠ (ألفان)</td>
+                    <td class="number">١٠٠، ٢٠٠، ٣٠٠</td>
                     <td>مضاف إليه</td>
                     <td>لا يتغير</td>
                     <td>مفرد مجرور</td>
                 </tr>
             </tbody>
         </table>
+        
+        <div class="side-note">
+            <div class="title">ملاحظة هامة:</div>
+            <div class="content">
+                الأعداد من ١١ إلى ١٩ مبنية. في هذا السياق، تعني "مبنية" أن هذه الأعداد لا تتغير في إعرابها بصرف النظر عن موقعها في الجملة.
+            </div>
+            <span class="translation"><strong>Important Note:</strong> Numbers from 11 to 19 are *mabni* (indeclinable). This means they do not change their form regardless of their syntactic position in a sentence.</span>
+        </div>
+
+        <div class="side-note">
+            <div class="title">الفرق بين التمييز والمميز في الأعداد:</div>
+            <div class="content">
+                <ul>
+                    <li><strong>ثلاثمائة (٣٠٠):</strong> التمييز هنا يكون دائماً مفرداً مجروراً، مثل "ثلاثمائة كتاب".</li>
+                    <li><strong>ثلاثة آلاف (٣٠٠٠):</strong> التمييز يكون مفرداً مجروراً أيضاً، ولكنه يحتاج إلى مضاف إليه يوضح العلاقة، مثل "ثلاثة آلاف كتاب".</li>
+                    <li><strong>مائتان (٢٠٠):</strong> نفس القاعدة تنطبق على مائتان، حيث يكون التمييز مفرداً مجروراً.</li>
+                    <li><strong>ألفان (٢٠٠٠):</strong> التمييز مفرد مجرور لكنه مضاف إليه ليوضح المعدود.</li>
+                </ul>
+            </div>
+            <span class="translation"><strong>Difference between *Tamyiz* and *Mumayz* for Numbers:</strong></span>
+            <ul class="translation">
+                <li><strong>Thalathmi'ah (300):</strong> The *tamyiz* (clarifier) is always in the singular genitive case, as in "ثلاثمائة كتاب" (*three hundred books*).</li>
+                <li><strong>Thalathat alaf (3000):</strong> The *tamyiz* is also in the singular genitive case, but requires an additional possessive construct (*mudaf ilayh*), as in "ثلاثة آلاف كتاب" (*three thousand books*).</li>
+                <li><strong>Mi'atan (200):</strong> The same rule applies to 200, where the *tamyiz* is in the singular genitive case.</li>
+                <li><strong>Alfan (2000):</strong> The *tamyiz* is also singular genitive but functions with a possessive relationship to clarify the counted object.</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

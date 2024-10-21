@@ -1,6 +1,23 @@
-import React from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Makharij Chart</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        import React, { useState } from 'react';
 
-const CombinedMakharijChart = () => {
+const InteractiveMakharijChart = () => {
+  const [expandedAreas, setExpandedAreas] = useState({});
+  const [highlightedLetter, setHighlightedLetter] = useState(null);
+
   const makharijData = [
     {
       area: "الجوف (Al-Jawf)",
@@ -79,51 +96,74 @@ const CombinedMakharijChart = () => {
     }
   ];
 
+  const toggleArea = (index) => {
+    setExpandedAreas(prev => ({...prev, [index]: !prev[index]}));
+  };
+
+  const handleLetterHover = (letter) => {
+    setHighlightedLetter(letter);
+  };
+
   return (
     <div className="p-4 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center">Combined Makharij Chart</h2>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border border-gray-300 p-2">Area</th>
-              <th className="border border-gray-300 p-2">Description</th>
-              <th className="border border-gray-300 p-2">Letters and Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {makharijData.map((area, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                <td className="border border-gray-300 p-2 font-bold text-right" dir="rtl">{area.area}</td>
-                <td className="border border-gray-300 p-2 text-right" dir="rtl">{area.description}</td>
-                <td className="border border-gray-300 p-2">
-                  {area.letters && (
-                    <ul className="list-disc list-inside">
-                      {area.letters.map((item, letterIndex) => (
-                        <li key={letterIndex} className="text-right" dir="rtl">
-                          <span className="font-bold">{item.letter}</span>: {item.description}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {area.details && (
-                    <ul className="list-disc list-inside">
-                      {area.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} className="text-right" dir="rtl">
-                          <span className="font-bold">{detail.name}</span>: {detail.position}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <h2 className="text-2xl font-bold mb-4 text-center">Interactive Makharij Chart</h2>
+      <div className="space-y-4">
+        {makharijData.map((area, index) => (
+          <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
+            <button
+              className="w-full p-4 text-left bg-gray-100 hover:bg-gray-200 transition-colors duration-200 flex justify-between items-center"
+              onClick={() => toggleArea(index)}
+            >
+              <span className="font-bold text-right" dir="rtl">{area.area}</span>
+              <span>{expandedAreas[index] ? '▼' : '▶'}</span>
+            </button>
+            {expandedAreas[index] && (
+              <div className="p-4 bg-white">
+                <p className="mb-2 text-right" dir="rtl">{area.description}</p>
+                {area.letters && (
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {area.letters.map((item, letterIndex) => (
+                      <div
+                        key={letterIndex}
+                        className={`p-2 border rounded cursor-pointer transition-colors duration-200 ${
+                          highlightedLetter === item.letter ? 'bg-blue-100 border-blue-300' : 'bg-gray-50 border-gray-200'
+                        }`}
+                        onMouseEnter={() => handleLetterHover(item.letter)}
+                        onMouseLeave={() => handleLetterHover(null)}
+                      >
+                        <span className="font-bold text-lg">{item.letter}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {highlightedLetter && area.letters && (
+                  <p className="text-right" dir="rtl">
+                    <span className="font-bold">{highlightedLetter}</span>: 
+                    {area.letters.find(l => l.letter === highlightedLetter)?.description}
+                  </p>
+                )}
+                {area.details && (
+                  <ul className="list-disc list-inside">
+                    {area.details.map((detail, detailIndex) => (
+                      <li key={detailIndex} className="text-right" dir="rtl">
+                        <span className="font-bold">{detail.name}</span>: {detail.position}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-      <p className="mt-4 text-sm text-gray-600">Note: This comprehensive chart combines information from both images, providing a detailed overview of the articulation points (makharij) of Arabic letters and the structure of teeth involved in pronunciation.</p>
+      <p className="mt-4 text-sm text-gray-600">Note: Click on each area to expand or collapse details. Hover over letters to see their specific articulation points.</p>
     </div>
   );
 };
 
-export default CombinedMakharijChart;
+export default InteractiveMakharijChart;
+        
+        ReactDOM.render(<InteractiveMakharijChart />, document.getElementById('root'));
+    </script>
+</body>
+</html>

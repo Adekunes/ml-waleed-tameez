@@ -4,165 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Makharij Chart</title>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        import React, { useState } from 'react';
+        const InteractiveMakharijChart = () => {
+            const [expandedAreas, setExpandedAreas] = React.useState({});
+            const [highlightedLetter, setHighlightedLetter] = React.useState(null);
 
-const InteractiveMakharijChart = () => {
-  const [expandedAreas, setExpandedAreas] = useState({});
-  const [highlightedLetter, setHighlightedLetter] = useState(null);
+            const makharijData = [
+                {
+                    area: "الجوف (Al-Jawf)",
+                    description: "الحروف المدية، وهي الألف المرققة الغير الممالة",
+                    letters: [
+                        { letter: "ا", description: "الألف المرققة الغير الممالة" },
+                        { letter: "و", description: "الواو المدية" },
+                        { letter: "ي", description: "الياء المدية" }
+                    ]
+                },
+                {
+                    area: "الحلق (Al-Halq)",
+                    description: "مخارج الحروف من الحلق",
+                    letters: [
+                        { letter: "ء", description: "من أقصى الحلق مما يلي الصدر" },
+                        { letter: "ه", description: "من أقصى الحلق" },
+                        { letter: "ع", description: "من وسط الحلق" },
+                        { letter: "ح", description: "من وسط الحلق" },
+                        { letter: "غ", description: "من أدنى الحلق" },
+                        { letter: "خ", description: "من أدنى الحلق" }
+                    ]
+                },
+                {
+                    area: "اللسان (Al-Lisan)",
+                    description: "مخارج الحروف من اللسان",
+                    letters: [
+                        { letter: "ق", description: "من أعلى أقصى اللسان وما فوقه من الحنك الأعلى" },
+                        { letter: "ك", description: "من أسفله" },
+                        { letter: "ج", description: "من وسط اللسان" },
+                        { letter: "ش", description: "من وسط اللسان" },
+                        { letter: "ي", description: "من وسط اللسان (غير المدية)" },
+                        { letter: "ض", description: "من حافة اللسان" },
+                        { letter: "ل", description: "اللام المرققة من أدنى الحافة يليها مع اللثة العليا" },
+                        { letter: "ن", description: "النون المظهرة من طرفه مع ما يوازيه تحت اللام" },
+                        { letter: "ر", description: "من ظهره بعيد طرفه مع ما يحاذيه" },
+                        { letter: "ط", description: "من طرفه مع أصول الثنايا العليا" },
+                        { letter: "د", description: "من طرفه مع أصول الثنايا العليا" },
+                        { letter: "ت", description: "من طرفه مع أصول الثنايا العليا" },
+                        { letter: "ص", description: "من طرفه مع صفحتي الثنيتين العليين" },
+                        { letter: "س", description: "من طرفه مع صفحتي الثنيتين العليين" },
+                        { letter: "ز", description: "من طرفه مع صفحتي الثنيتين العليين" },
+                        { letter: "ظ", description: "من طرفه مع أطراف الثنايا العليا" },
+                        { letter: "ذ", description: "من طرفه مع أطراف الثنايا العليا" },
+                        { letter: "ث", description: "من طرفه مع أطراف الثنايا العليا" }
+                    ]
+                },
+                {
+                    area: "الشفتان (Ash-Shafatan)",
+                    description: "مخارج الحروف من الشفتين",
+                    letters: [
+                        { letter: "ف", description: "من بطن الشفة السفلى مع أطراف الثنايا العليا" },
+                        { letter: "ب", description: "من الشفتين" },
+                        { letter: "م", description: "الميم المظهرة من الشفتين" },
+                        { letter: "و", description: "الواو الغير المدية من الشفتين" }
+                    ]
+                },
+                {
+                    area: "الخيشوم (Al-Khayshum)",
+                    description: "مخرج الغنة",
+                    letters: [
+                        { letter: "ن", description: "النون المخفاة والمدغمة" },
+                        { letter: "م", description: "الميم المخفاة والمدغمة" }
+                    ]
+                },
+                {
+                    area: "الأسنان (Al-Asnan)",
+                    description: "ثنتان وثلاثون، نصفها في الأعلى ونصفها في الأسفل",
+                    details: [
+                        { name: "الثنيتان", position: "في الأعلى المقدمتان" },
+                        { name: "الرباعية", position: "تليهما يمينا وشمالا" },
+                        { name: "الناب", position: "تليهما كذلك" },
+                        { name: "الأضراس", position: "الباقي، منها ضاحك تال للنابين" },
+                        { name: "الطواحن", position: "تليهما ثلاثة يمينا وثلاثة شمالا" },
+                        { name: "النواجذ", position: "ثم الواحد كذلك" }
+                    ]
+                }
+            ];
 
-  const makharijData = [
-    {
-      area: "الجوف (Al-Jawf)",
-      description: "الحروف المدية، وهي الألف المرققة الغير الممالة",
-      letters: [
-        { letter: "ا", description: "الألف المرققة الغير الممالة" },
-        { letter: "و", description: "الواو المدية" },
-        { letter: "ي", description: "الياء المدية" }
-      ]
-    },
-    {
-      area: "الحلق (Al-Halq)",
-      description: "مخارج الحروف من الحلق",
-      letters: [
-        { letter: "ء", description: "من أقصى الحلق مما يلي الصدر" },
-        { letter: "ه", description: "من أقصى الحلق" },
-        { letter: "ع", description: "من وسط الحلق" },
-        { letter: "ح", description: "من وسط الحلق" },
-        { letter: "غ", description: "من أدنى الحلق" },
-        { letter: "خ", description: "من أدنى الحلق" }
-      ]
-    },
-    {
-      area: "اللسان (Al-Lisan)",
-      description: "مخارج الحروف من اللسان",
-      letters: [
-        { letter: "ق", description: "من أعلى أقصى اللسان وما فوقه من الحنك الأعلى" },
-        { letter: "ك", description: "من أسفله" },
-        { letter: "ج", description: "من وسط اللسان" },
-        { letter: "ش", description: "من وسط اللسان" },
-        { letter: "ي", description: "من وسط اللسان (غير المدية)" },
-        { letter: "ض", description: "من حافة اللسان" },
-        { letter: "ل", description: "اللام المرققة من أدنى الحافة يليها مع اللثة العليا" },
-        { letter: "ن", description: "النون المظهرة من طرفه مع ما يوازيه تحت اللام" },
-        { letter: "ر", description: "من ظهره بعيد طرفه مع ما يحاذيه" },
-        { letter: "ط", description: "من طرفه مع أصول الثنايا العليا" },
-        { letter: "د", description: "من طرفه مع أصول الثنايا العليا" },
-        { letter: "ت", description: "من طرفه مع أصول الثنايا العليا" },
-        { letter: "ص", description: "من طرفه مع صفحتي الثنيتين العليين" },
-        { letter: "س", description: "من طرفه مع صفحتي الثنيتين العليين" },
-        { letter: "ز", description: "من طرفه مع صفحتي الثنيتين العليين" },
-        { letter: "ظ", description: "من طرفه مع أطراف الثنايا العليا" },
-        { letter: "ذ", description: "من طرفه مع أطراف الثنايا العليا" },
-        { letter: "ث", description: "من طرفه مع أطراف الثنايا العليا" }
-      ]
-    },
-    {
-      area: "الشفتان (Ash-Shafatan)",
-      description: "مخارج الحروف من الشفتين",
-      letters: [
-        { letter: "ف", description: "من بطن الشفة السفلى مع أطراف الثنايا العليا" },
-        { letter: "ب", description: "من الشفتين" },
-        { letter: "م", description: "الميم المظهرة من الشفتين" },
-        { letter: "و", description: "الواو الغير المدية من الشفتين" }
-      ]
-    },
-    {
-      area: "الخيشوم (Al-Khayshum)",
-      description: "مخرج الغنة",
-      letters: [
-        { letter: "ن", description: "النون المخفاة والمدغمة" },
-        { letter: "م", description: "الميم المخفاة والمدغمة" }
-      ]
-    },
-    {
-      area: "الأسنان (Al-Asnan)",
-      description: "ثنتان وثلاثون، نصفها في الأعلى ونصفها في الأسفل",
-      details: [
-        { name: "الثنيتان", position: "في الأعلى المقدمتان" },
-        { name: "الرباعية", position: "تليهما يمينا وشمالا" },
-        { name: "الناب", position: "تليهما كذلك" },
-        { name: "الأضراس", position: "الباقي، منها ضاحك تال للنابين" },
-        { name: "الطواحن", position: "تليهما ثلاثة يمينا وثلاثة شمالا" },
-        { name: "النواجذ", position: "ثم الواحد كذلك" }
-      ]
-    }
-  ];
+            const toggleArea = (index) => {
+                setExpandedAreas(prev => ({...prev, [index]: !prev[index]}));
+            };
 
-  const toggleArea = (index) => {
-    setExpandedAreas(prev => ({...prev, [index]: !prev[index]}));
-  };
+            const handleLetterHover = (letter) => {
+                setHighlightedLetter(letter);
+            };
 
-  const handleLetterHover = (letter) => {
-    setHighlightedLetter(letter);
-  };
+            const getLetterDescription = (area, letter) => {
+                const foundLetter = area.letters.find(l => l.letter === letter);
+                return foundLetter ? foundLetter.description : '';
+            };
 
-  return (
-    <div className="p-4 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center">Interactive Makharij Chart</h2>
-      <div className="space-y-4">
-        {makharijData.map((area, index) => (
-          <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
-            <button
-              className="w-full p-4 text-left bg-gray-100 hover:bg-gray-200 transition-colors duration-200 flex justify-between items-center"
-              onClick={() => toggleArea(index)}
-            >
-              <span className="font-bold text-right" dir="rtl">{area.area}</span>
-              <span>{expandedAreas[index] ? '▼' : '▶'}</span>
-            </button>
-            {expandedAreas[index] && (
-              <div className="p-4 bg-white">
-                <p className="mb-2 text-right" dir="rtl">{area.description}</p>
-                {area.letters && (
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {area.letters.map((item, letterIndex) => (
-                      <div
-                        key={letterIndex}
-                        className={`p-2 border rounded cursor-pointer transition-colors duration-200 ${
-                          highlightedLetter === item.letter ? 'bg-blue-100 border-blue-300' : 'bg-gray-50 border-gray-200'
-                        }`}
-                        onMouseEnter={() => handleLetterHover(item.letter)}
-                        onMouseLeave={() => handleLetterHover(null)}
-                      >
-                        <span className="font-bold text-lg">{item.letter}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {highlightedLetter && area.letters && (
-                  <p className="text-right" dir="rtl">
-                    <span className="font-bold">{highlightedLetter}</span>: 
-                    {area.letters.find(l => l.letter === highlightedLetter)?.description}
-                  </p>
-                )}
-                {area.details && (
-                  <ul className="list-disc list-inside">
-                    {area.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className="text-right" dir="rtl">
-                        <span className="font-bold">{detail.name}</span>: {detail.position}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-      <p className="mt-4 text-sm text-gray-600">Note: Click on each area to expand or collapse details. Hover over letters to see their specific articulation points.</p>
-    </div>
-  );
-};
+            return (
+                <div className="p-4 max-w-6xl mx-auto">
+                    <h2 className="text-2xl font-bold mb-4 text-center">Interactive Makharij Chart</h2>
+                    <div className="space-y-4">
+                        {makharijData.map((area, index) => (
+                            <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
+                                <button
+                                    className="w-full p-4 text-left bg-gray-100 hover:bg-gray-200 transition-colors duration-200 flex justify-between items-center"
+                                    onClick={() => toggleArea(index)}
+                                >
+                                    <span className="font-bold text-right" dir="rtl">{area.area}</span>
+                                    <span>{expandedAreas[index] ? '▼' : '▶'}</span>
+                                </button>
+                                {expandedAreas[index] && (
+                                    <div className="p-4 bg-white">
+                                        <p className="mb-2 text-right" dir="rtl">{area.description}</p>
+                                        {area.letters && (
+                                            <div className="flex flex-wrap gap-2 mb-2">
+                                                {area.letters.map((item, letterIndex) => (
+                                                    <div
+                                                        key={letterIndex}
+                                                        className={"p-2 border rounded cursor-pointer transition-colors duration-200 " +
+                                                            (highlightedLetter === item.letter ? 'bg-blue-100 border-blue-300' : 'bg-gray-50 border-gray-200')
+                                                        }
+                                                        onMouseEnter={() => handleLetterHover(item.letter)}
+                                                        onMouseLeave={() => handleLetterHover(null)}
+                                                    >
+                                                        <span className="font-bold text-lg">{item.letter}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                        {highlightedLetter && area.letters && (
+                                            <p className="text-right" dir="rtl">
+                                                <span className="font-bold">{highlightedLetter}</span>: 
+                                                {getLetterDescription(area, highlightedLetter)}
+                                            </p>
+                                        )}
+                                        {area.details && (
+                                            <ul className="list-disc list-inside">
+                                                {area.details.map((detail, detailIndex) => (
+                                                    <li key={detailIndex} className="text-right" dir="rtl">
+                                                        <span className="font-bold">{detail.name}</span>: {detail.position}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <p className="mt-4 text-sm text-gray-600">Note: Click on each area to expand or collapse details. Hover over letters to see their specific articulation points.</p>
+                </div>
+            );
+        };
 
-export default InteractiveMakharijChart;
-        
         ReactDOM.render(<InteractiveMakharijChart />, document.getElementById('root'));
     </script>
 </body>

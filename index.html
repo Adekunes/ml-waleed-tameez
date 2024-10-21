@@ -4,27 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قواعد الأعداد في اللغة العربية</title>
-    <a href="makharij-chart.html">Interactive Makharij Chart</a>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
         body {
             font-family: 'Amiri', serif;
             background-color: #f0f4f8;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            right: -250px;
+            transition: 0.3s;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .sidebar.open {
+            right: 0;
+        }
+        .sidebar-toggle {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            display: block;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover {
+            background-color: #34495e;
         }
         .container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 1200px;
+            flex-grow: 1;
             padding: 20px;
+            margin-right: 0;
+            transition: 0.3s;
+        }
+        .container.shifted {
+            margin-right: 250px;
         }
         table {
             width: 100%;
@@ -63,7 +97,7 @@
             background-color: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
-            border-left: 5px solid #3498db;
+            border-right: 5px solid #3498db;
             margin-bottom: 20px;
         }
         .side-note .title {
@@ -86,6 +120,13 @@
     </style>
 </head>
 <body>
+    <button class="sidebar-toggle">☰ القائمة</button>
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html">قواعد الأعداد في اللغة العربية</a></li>
+            <li><a href="makharij-chart.html">مخارج الحروف التفاعلية</a></li>
+        </ul>
+    </div>
     <div class="container">
         <h1>قواعد الأعداد في اللغة العربية</h1>
         <table>
@@ -182,5 +223,16 @@
             </ul>
         </div>
     </div>
+
+    <script>
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const container = document.querySelector('.container');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            container.classList.toggle('shifted');
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Family Diagrams</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: white;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: right;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .period {
+            margin-bottom: 40px;
+        }
+
+        .period-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .example {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .diagram {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .node {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: auto;
+            white-space: nowrap;
+        }
+
+        .label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .example-number {
+            position: absolute;
+            top: -25px;
+            right: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>(mcep) كتاب الرضاع</h1>
+
+        <div class="period">
+            <h2 class="period-title">الدورة الأولى</h2>
+            
+            <div class="example">
+                <div class="example-number">1</div>
+                <div class="diagram">
+                    <svg>
+                        <line x1="100" y1="50" x2="200" y2="50" stroke="black" stroke-width="1"/>
+                        <line x1="150" y1="50" x2="150" y2="150" stroke="black" stroke-width="1"/>
+                    </svg>
+                    <div class="node" style="top: 25%; left: 33%">
+                        أمينة فاطمة
+                        <div class="label">أم</div>
+                    </div>
+                    <div class="node" style="top: 25%; left: 67%">
+                        عبدالله
+                    </div>
+                    <div class="node" style="top: 75%; left: 50%">
+                        رضاع
+                    </div>
+                </div>
+            </div>
+
+            <div class="example">
+                <div class="example-number">2</div>
+                <div class="diagram">
+                    <svg>
+                        <line x1="100" y1="50" x2="200" y2="150" stroke="black" stroke-width="1"/>
+                        <line x1="200" y1="50" x2="200" y2="150" stroke="black" stroke-width="1"/>
+                    </svg>
+                    <div class="node" style="top: 25%; left: 33%">
+                        زينب
+                    </div>
+                    <div class="node" style="top: 25%; left: 67%">
+                        أمينة فاطمة
+                    </div>
+                    <div class="node" style="top: 75%; left: 67%">
+                        عبدالله
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="period">
+            <h2 class="period-title">الدورة الثانية</h2>
+            
+            <div class="example">
+                <div class="example-number">1</div>
+                <div class="diagram">
+                    <svg>
+                        <path d="M100,50 L200,50 L150,150 Z" fill="none" stroke="black" stroke-width="1"/>
+                    </svg>
+                    <div class="node" style="top: 25%; left: 33%">
+                        أحمد
+                    </div>
+                    <div class="node" style="top: 25%; left: 67%">
+                        برة
+                        <div class="label">زوجة</div>
+                    </div>
+                    <div class="node" style="top: 75%; left: 50%">
+                        زيد
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

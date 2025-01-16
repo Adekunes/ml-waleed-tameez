@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f4f6f8;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .main-header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: left;
+        }
+        
+        .category-row td:first-child {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .arabic {
+            font-size: 1.2em;
+            direction: rtl;
+            color: #2c3e50;
+        }
+        
+        .example {
+            font-size: 0.9em;
+            color: #666;
+            direction: rtl;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4" class="main-header">1. إعراب بالحركة (Inflection with Vowel Marks)</th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Rafa (رَفْع)</th>
+                    <th>Nasb (نَصْب)</th>
+                    <th>Jarr (جَرّ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-row">
+                    <td>مفرد منصرف صحيح<br/>
+                        <span class="example">Example: رجل، وعد، زيد</span>
+                    </td>
+                    <td class="arabic">ضمة<br/><span class="example">هذا رجلٌ</span></td>
+                    <td class="arabic">فتحة<br/><span class="example">رأيتُ رجلاً</span></td>
+                    <td class="arabic">كسرة<br/><span class="example">مررت برجلٍ</span></td>
+                </tr>
+                <tr class="category-row">
+                    <td>غير منصرف<br/>
+                        <span class="example">Example: عُمَر</span>
+                    </td>
+                    <td class="arabic">ضمة<br/><span class="example">هذا عُمَرُ</span></td>
+                    <td class="arabic">فتحة<br/><span class="example">رأيتُ عُمَرَ</span></td>
+                    <td class="arabic">فتحة<br/><span class="example">مررتُ بعُمَرَ</span></td>
+                </tr>
+                <tr class="category-row">
+                    <td>جمع مؤنث سالم<br/>
+                        <span class="example">Example: مسلمات</span>
+                    </td>
+                    <td class="arabic">ضمة<br/><span class="example">هذه مسلماتٌ</span></td>
+                    <td class="arabic">كسرة<br/><span class="example">رأيتُ مسلماتٍ</span></td>
+                    <td class="arabic">كسرة<br/><span class="example">مررتُ بمسلماتٍ</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="margin-top: 30px;">
+            <thead>
+                <tr>
+                    <th colspan="4" class="main-header">2. إعراب بالحروف (Inflection with Letters)</th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Rafa (رَفْع)</th>
+                    <th>Nasb (نَصْب)</th>
+                    <th>Jarr (جَرّ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-row">
+                    <td>الأسماء الستة<br/>
+                        <span class="example">أب، أخ، حم، فو، ذو</span>
+                    </td>
+                    <td class="arabic">و<br/><span class="example">هذا أبوك</span></td>
+                    <td class="arabic">ا<br/><span class="example">رأيت أباك</span></td>
+                    <td class="arabic">ي<br/><span class="example">مررت بأبيك</span></td>
+                </tr>
+                <tr class="category-row">
+                    <td>المثنى<br/>
+                        <span class="example">Example: رجلان</span>
+                    </td>
+                    <td class="arabic">ا<br/><span class="example">جاء رجلانِ</span></td>
+                    <td class="arabic">ي<br/><span class="example">رأيت رجلينِ</span></td>
+                    <td class="arabic">ي<br/><span class="example">مررت برجلينِ</span></td>
+                </tr>
+                <tr class="category-row">
+                    <td>جمع مذكر سالم<br/>
+                        <span class="example">Example: مسلمون</span>
+                    </td>
+                    <td class="arabic">و<br/><span class="example">جاء مسلمونَ</span></td>
+                    <td class="arabic">ي<br/><span class="example">رأيت مسلمينَ</span></td>
+                    <td class="arabic">ي<br/><span class="example">مررت بمسلمينَ</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="margin-top: 30px;">
+            <thead>
+                <tr>
+                    <th colspan="4" class="main-header">3. إعراب تقديري (Hidden/Estimated Inflection)</th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Rafa (رَفْع)</th>
+                    <th>Nasb (نَصْب)</th>
+                    <th>Jarr (جَرّ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-row">
+                    <td>اسم مقصور<br/>
+                        <span class="example">Example: موسى</span>
+                    </td>
+                    <td class="arabic">مقدر<br/><span class="example">هذا موسى</span></td>
+                    <td class="arabic">مقدر<br/><span class="example">رأيت موسى</span></td>
+                    <td class="arabic">مقدر<br/><span class="example">مررت بموسى</span></td>
+                </tr>
+                <tr class="category-row">
+                    <td>اسم منقوص<br/>
+                        <span class="example">Example: القاضي</span>
+                    </td>
+                    <td class="arabic">مقدر<br/><span class="example">جاء القاضي</span></td>
+                    <td class="arabic">ظاهر<br/><span class="example">رأيت القاضيَ</span></td>
+                    <td class="arabic">مقدر<br/><span class="example">مررت بالقاضي</span></td>
+                </tr>
+                <tr class="category-row">
+                    <td>مضاف إلى ياء المتكلم<br/>
+                        <span class="example">Example: مسلمي (my Muslims)</span>
+                    </td>
+                    <td class="arabic">مقدر<br/><span class="example">جاء مسلميَّ</span></td>
+                    <td class="arabic">ظاهر<br/><span class="example">رأيت مسلميَّ</span></td>
+                    <td class="arabic">ظاهر<br/><span class="example">مررت بمسلميَّ</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

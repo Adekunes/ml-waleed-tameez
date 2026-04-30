@@ -2,149 +2,86 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Family Diagrams</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: white;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: right;
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        .period {
-            margin-bottom: 40px;
-        }
-
-        .period-title {
-            font-size: 18px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 5px;
-        }
-
-        .example {
-            margin: 30px 0;
-            position: relative;
-        }
-
-        .diagram {
-            width: 300px;
-            height: 200px;
-            position: relative;
-            margin: 20px auto;
-        }
-
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .node {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: auto;
-            white-space: nowrap;
-        }
-
-        .label {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .example-number {
-            position: absolute;
-            top: -25px;
-            right: 0;
-            font-size: 14px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتاب الرضاع</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>(mcep) كتاب الرضاع</h1>
+    <main class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="index.html">
+                <span class="brand-mark">ع</span>
+                <span class="brand-text">
+                    <span class="brand-title">Arabic Study Hub</span>
+                    <span class="brand-subtitle">Clear grammar notes for students</span>
+                </span>
+            </a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">الأعداد</a>
+                <a href="makharij-chart.html">مخارج الحروف</a>
+                <a href="nahw.html">Nahw</a>
+                <a class="active" href="radaah.html">الرضاع</a>
+            </nav>
+        </header>
 
-        <div class="period">
-            <h2 class="period-title">الدورة الأولى</h2>
-            
-            <div class="example">
-                <div class="example-number">1</div>
-                <div class="diagram">
-                    <svg>
-                        <line x1="100" y1="50" x2="200" y2="50" stroke="black" stroke-width="1"/>
-                        <line x1="150" y1="50" x2="150" y2="150" stroke="black" stroke-width="1"/>
-                    </svg>
-                    <div class="node" style="top: 25%; left: 33%">
-                        أمينة فاطمة
-                        <div class="label">أم</div>
-                    </div>
-                    <div class="node" style="top: 25%; left: 67%">
-                        عبدالله
-                    </div>
-                    <div class="node" style="top: 75%; left: 50%">
-                        رضاع
-                    </div>
-                </div>
-            </div>
+        <section class="hero">
+            <h1>كتاب الرضاع</h1>
+            <p>رسوم مبسطة تساعد الطالب على تتبع العلاقات في الأمثلة خطوة بخطوة.</p>
+        </section>
 
-            <div class="example">
-                <div class="example-number">2</div>
-                <div class="diagram">
-                    <svg>
-                        <line x1="100" y1="50" x2="200" y2="150" stroke="black" stroke-width="1"/>
-                        <line x1="200" y1="50" x2="200" y2="150" stroke="black" stroke-width="1"/>
-                    </svg>
-                    <div class="node" style="top: 25%; left: 33%">
-                        زينب
+        <div class="page-stack">
+            <section class="diagram-section">
+                <h2 class="section-title">الدورة الأولى</h2>
+
+                <article class="diagram-card">
+                    <h3>مثال 1</h3>
+                    <div class="diagram">
+                        <svg viewBox="0 0 300 220" aria-hidden="true">
+                            <line x1="80" y1="60" x2="220" y2="60"/>
+                            <line x1="150" y1="60" x2="150" y2="165"/>
+                        </svg>
+                        <div class="node" style="top: 27%; left: 27%">
+                            أمينة فاطمة
+                            <div class="label">أم</div>
+                        </div>
+                        <div class="node" style="top: 27%; left: 73%">عبدالله</div>
+                        <div class="node" style="top: 75%; left: 50%">رضاع</div>
                     </div>
-                    <div class="node" style="top: 25%; left: 67%">
-                        أمينة فاطمة
+                </article>
+
+                <article class="diagram-card">
+                    <h3>مثال 2</h3>
+                    <div class="diagram">
+                        <svg viewBox="0 0 300 220" aria-hidden="true">
+                            <line x1="82" y1="60" x2="220" y2="165"/>
+                            <line x1="220" y1="60" x2="220" y2="165"/>
+                        </svg>
+                        <div class="node" style="top: 27%; left: 27%">زينب</div>
+                        <div class="node" style="top: 27%; left: 73%">أمينة فاطمة</div>
+                        <div class="node" style="top: 75%; left: 73%">عبدالله</div>
                     </div>
-                    <div class="node" style="top: 75%; left: 67%">
-                        عبدالله
+                </article>
+            </section>
+
+            <section class="diagram-section">
+                <h2 class="section-title">الدورة الثانية</h2>
+
+                <article class="diagram-card">
+                    <h3>مثال 1</h3>
+                    <div class="diagram">
+                        <svg viewBox="0 0 300 220" aria-hidden="true">
+                            <path d="M80,60 L220,60 L150,165 Z" fill="none"/>
+                        </svg>
+                        <div class="node" style="top: 27%; left: 27%">أحمد</div>
+                        <div class="node" style="top: 27%; left: 73%">
+                            برة
+                            <div class="label">زوجة</div>
+                        </div>
+                        <div class="node" style="top: 75%; left: 50%">زيد</div>
                     </div>
-                </div>
-            </div>
+                </article>
+            </section>
         </div>
-
-        <div class="period">
-            <h2 class="period-title">الدورة الثانية</h2>
-            
-            <div class="example">
-                <div class="example-number">1</div>
-                <div class="diagram">
-                    <svg>
-                        <path d="M100,50 L200,50 L150,150 Z" fill="none" stroke="black" stroke-width="1"/>
-                    </svg>
-                    <div class="node" style="top: 25%; left: 33%">
-                        أحمد
-                    </div>
-                    <div class="node" style="top: 25%; left: 67%">
-                        برة
-                        <div class="label">زوجة</div>
-                    </div>
-                    <div class="node" style="top: 75%; left: 50%">
-                        زيد
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
 </body>
 </html>

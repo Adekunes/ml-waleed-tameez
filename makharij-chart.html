@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Makharij Chart</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
         const InteractiveMakharijChart = () => {
-            const [expandedAreas, setExpandedAreas] = React.useState({});
-            const [highlightedLetter, setHighlightedLetter] = React.useState(null);
+            const [expandedAreas, setExpandedAreas] = React.useState({0: true});
+            const [highlightedLetters, setHighlightedLetters] = React.useState({});
 
             const makharijData = [
                 {
@@ -98,73 +98,99 @@
                 setExpandedAreas(prev => ({...prev, [index]: !prev[index]}));
             };
 
-            const handleLetterHover = (letter) => {
-                setHighlightedLetter(letter);
+            const setAreaLetter = (index, letter) => {
+                setHighlightedLetters(prev => ({...prev, [index]: letter}));
             };
 
             const getLetterDescription = (area, letter) => {
                 const foundLetter = area.letters.find(l => l.letter === letter);
-                return foundLetter ? foundLetter.description : '';
+                return foundLetter ? foundLetter.description : "";
             };
 
             return (
-                <div className="p-4 max-w-6xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-4 text-center">Interactive Makharij Chart</h2>
-                    <div className="space-y-4">
+                <main className="site-shell">
+                    <header className="site-header">
+                        <a className="brand" href="index.html">
+                            <span className="brand-mark">ع</span>
+                            <span className="brand-text">
+                                <span className="brand-title">Arabic Study Hub</span>
+                                <span className="brand-subtitle">Clear grammar notes for students</span>
+                            </span>
+                        </a>
+                        <nav className="nav-links" aria-label="Main navigation">
+                            <a href="index.html">الأعداد</a>
+                            <a className="active" href="makharij-chart.html">مخارج الحروف</a>
+                            <a href="nahw.html">Nahw</a>
+                            <a href="radaah.html">الرضاع</a>
+                        </nav>
+                    </header>
+
+                    <section className="hero">
+                        <h1>Interactive Makharij Chart</h1>
+                        <p>Open each articulation area and hover over a letter to review where it is pronounced.</p>
+                    </section>
+
+                    <div className="page-stack">
                         {makharijData.map((area, index) => (
-                            <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
+                            <section key={index} className="area-card">
                                 <button
-                                    className="w-full p-4 text-left bg-gray-100 hover:bg-gray-200 transition-colors duration-200 flex justify-between items-center"
+                                    className="area-button"
                                     onClick={() => toggleArea(index)}
+                                    aria-expanded={Boolean(expandedAreas[index])}
                                 >
-                                    <span className="font-bold text-right" dir="rtl">{area.area}</span>
-                                    <span>{expandedAreas[index] ? '▼' : '▶'}</span>
+                                    <span className="area-title rtl" dir="rtl">{area.area}</span>
+                                    <span aria-hidden="true">{expandedAreas[index] ? "Collapse" : "Open"}</span>
                                 </button>
                                 {expandedAreas[index] && (
-                                    <div className="p-4 bg-white">
-                                        <p className="mb-2 text-right" dir="rtl">{area.description}</p>
+                                    <div className="area-panel">
+                                        <p className="rtl" dir="rtl">{area.description}</p>
                                         {area.letters && (
-                                            <div className="flex flex-wrap gap-2 mb-2">
+                                            <div className="letter-grid" dir="rtl">
                                                 {area.letters.map((item, letterIndex) => (
-                                                    <div
+                                                    <button
                                                         key={letterIndex}
-                                                        className={"p-2 border rounded cursor-pointer transition-colors duration-200 " +
-                                                            (highlightedLetter === item.letter ? 'bg-blue-100 border-blue-300' : 'bg-gray-50 border-gray-200')
-                                                        }
-                                                        onMouseEnter={() => handleLetterHover(item.letter)}
-                                                        onMouseLeave={() => handleLetterHover(null)}
+                                                        className={"letter-chip " + (highlightedLetters[index] === item.letter ? "is-active" : "")}
+                                                        onMouseEnter={() => setAreaLetter(index, item.letter)}
+                                                        onFocus={() => setAreaLetter(index, item.letter)}
+                                                        type="button"
                                                     >
-                                                        <span className="font-bold text-lg">{item.letter}</span>
-                                                    </div>
+                                                        {item.letter}
+                                                    </button>
                                                 ))}
                                             </div>
                                         )}
-                                        {highlightedLetter && area.letters && (
-                                            <p className="text-right" dir="rtl">
-                                                <span className="font-bold">{highlightedLetter}</span>: 
-                                                {getLetterDescription(area, highlightedLetter)}
+                                        {area.letters && (
+                                            <p className={"description-box rtl " + (!highlightedLetters[index] ? "is-empty" : "")} dir="rtl">
+                                                {highlightedLetters[index] ? (
+                                                    <React.Fragment>
+                                                        <strong>{highlightedLetters[index]}</strong>: {getLetterDescription(area, highlightedLetters[index])}
+                                                    </React.Fragment>
+                                                ) : (
+                                                    "مرر فوق حرف لعرض مخرجه."
+                                                )}
                                             </p>
                                         )}
                                         {area.details && (
-                                            <ul className="list-disc list-inside">
+                                            <ul className="rtl" dir="rtl">
                                                 {area.details.map((detail, detailIndex) => (
-                                                    <li key={detailIndex} className="text-right" dir="rtl">
-                                                        <span className="font-bold">{detail.name}</span>: {detail.position}
+                                                    <li key={detailIndex}>
+                                                        <strong>{detail.name}</strong>: {detail.position}
                                                     </li>
                                                 ))}
                                             </ul>
                                         )}
                                     </div>
                                 )}
-                            </div>
+                            </section>
                         ))}
                     </div>
-                    <p className="mt-4 text-sm text-gray-600">Note: Click on each area to expand or collapse details. Hover over letters to see their specific articulation points.</p>
-                </div>
+
+                    <p className="student-tip">Study tip: open one area at a time, say each letter slowly, then compare the description with your mouth position.</p>
+                </main>
             );
         };
 
-        ReactDOM.render(<InteractiveMakharijChart />, document.getElementById('root'));
+        ReactDOM.render(<InteractiveMakharijChart />, document.getElementById("root"));
     </script>
 </body>
 </html>

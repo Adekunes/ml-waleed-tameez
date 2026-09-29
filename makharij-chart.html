@@ -1,196 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl" data-page="makharij">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Makharij Chart</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>مخارج الحروف · Interactive Makharij Chart · Arabic Study Hub</title>
+    <meta name="description" content="Interactive makharij al-huruf chart: tap any Arabic letter to see its point of articulation, browse by area, and practise with a quiz.">
+    <meta name="theme-color" content="#f6f4ee">
+    <meta property="og:title" content="مخارج الحروف · Interactive Makharij Chart · Arabic Study Hub">
+    <meta property="og:description" content="Interactive makharij al-huruf chart: tap any Arabic letter to see its point of articulation, browse by area, and practise with a quiz.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d6b64'/%3E%3Ctext x='32' y='44' font-family='Amiri,serif' font-size='40' font-weight='700' text-anchor='middle' fill='%23fff'%3E%D8%B9%3C/text%3E%3C/svg%3E">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem("ash-theme");
+                if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/data.js"></script>
+    <script defer src="assets/js/site.js"></script>
+    <script defer src="assets/js/practice.js"></script>
+    <script defer src="assets/js/pages.js"></script>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
-        const InteractiveMakharijChart = () => {
-            const [expandedAreas, setExpandedAreas] = React.useState({0: true});
-            const [highlightedLetters, setHighlightedLetters] = React.useState({});
+    <a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
 
-            const makharijData = [
-                {
-                    area: "الجوف (Al-Jawf)",
-                    description: "الحروف المدية، وهي الألف المرققة الغير الممالة",
-                    letters: [
-                        { letter: "ا", description: "الألف المرققة الغير الممالة" },
-                        { letter: "و", description: "الواو المدية" },
-                        { letter: "ي", description: "الياء المدية" }
-                    ]
-                },
-                {
-                    area: "الحلق (Al-Halq)",
-                    description: "مخارج الحروف من الحلق",
-                    letters: [
-                        { letter: "ء", description: "من أقصى الحلق مما يلي الصدر" },
-                        { letter: "ه", description: "من أقصى الحلق" },
-                        { letter: "ع", description: "من وسط الحلق" },
-                        { letter: "ح", description: "من وسط الحلق" },
-                        { letter: "غ", description: "من أدنى الحلق" },
-                        { letter: "خ", description: "من أدنى الحلق" }
-                    ]
-                },
-                {
-                    area: "اللسان (Al-Lisan)",
-                    description: "مخارج الحروف من اللسان",
-                    letters: [
-                        { letter: "ق", description: "من أعلى أقصى اللسان وما فوقه من الحنك الأعلى" },
-                        { letter: "ك", description: "من أسفله" },
-                        { letter: "ج", description: "من وسط اللسان" },
-                        { letter: "ش", description: "من وسط اللسان" },
-                        { letter: "ي", description: "من وسط اللسان (غير المدية)" },
-                        { letter: "ض", description: "من حافة اللسان" },
-                        { letter: "ل", description: "اللام المرققة من أدنى الحافة يليها مع اللثة العليا" },
-                        { letter: "ن", description: "النون المظهرة من طرفه مع ما يوازيه تحت اللام" },
-                        { letter: "ر", description: "من ظهره بعيد طرفه مع ما يحاذيه" },
-                        { letter: "ط", description: "من طرفه مع أصول الثنايا العليا" },
-                        { letter: "د", description: "من طرفه مع أصول الثنايا العليا" },
-                        { letter: "ت", description: "من طرفه مع أصول الثنايا العليا" },
-                        { letter: "ص", description: "من طرفه مع صفحتي الثنيتين العليين" },
-                        { letter: "س", description: "من طرفه مع صفحتي الثنيتين العليين" },
-                        { letter: "ز", description: "من طرفه مع صفحتي الثنيتين العليين" },
-                        { letter: "ظ", description: "من طرفه مع أطراف الثنايا العليا" },
-                        { letter: "ذ", description: "من طرفه مع أطراف الثنايا العليا" },
-                        { letter: "ث", description: "من طرفه مع أطراف الثنايا العليا" }
-                    ]
-                },
-                {
-                    area: "الشفتان (Ash-Shafatan)",
-                    description: "مخارج الحروف من الشفتين",
-                    letters: [
-                        { letter: "ف", description: "من بطن الشفة السفلى مع أطراف الثنايا العليا" },
-                        { letter: "ب", description: "من الشفتين" },
-                        { letter: "م", description: "الميم المظهرة من الشفتين" },
-                        { letter: "و", description: "الواو الغير المدية من الشفتين" }
-                    ]
-                },
-                {
-                    area: "الخيشوم (Al-Khayshum)",
-                    description: "مخرج الغنة",
-                    letters: [
-                        { letter: "ن", description: "النون المخفاة والمدغمة" },
-                        { letter: "م", description: "الميم المخفاة والمدغمة" }
-                    ]
-                },
-                {
-                    area: "الأسنان (Al-Asnan)",
-                    description: "ثنتان وثلاثون، نصفها في الأعلى ونصفها في الأسفل",
-                    details: [
-                        { name: "الثنيتان", position: "في الأعلى المقدمتان" },
-                        { name: "الرباعية", position: "تليهما يمينا وشمالا" },
-                        { name: "الناب", position: "تليهما كذلك" },
-                        { name: "الأضراس", position: "الباقي، منها ضاحك تال للنابين" },
-                        { name: "الطواحن", position: "تليهما ثلاثة يمينا وثلاثة شمالا" },
-                        { name: "النواجذ", position: "ثم الواحد كذلك" }
-                    ]
-                }
-            ];
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Arabic Study Hub — الرئيسية">
+                <span class="brand-mark" aria-hidden="true">ع</span>
+                <span class="brand-text">
+                    <span class="brand-title" lang="en" dir="ltr">Arabic Study Hub</span>
+                    <span class="brand-sub">ملخصات واضحة للطلاب</span>
+                </span>
+            </a>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="numbers.html"><span>الأعداد</span><span class="en" lang="en" dir="ltr">Numbers</span></a>
+                <a href="nahw.html"><span>النحو</span><span class="en" lang="en" dir="ltr">Nahw</span></a>
+                <a href="makharij-chart.html" aria-current="page"><span>المخارج</span><span class="en" lang="en" dir="ltr">Makharij</span></a>
+                <a href="radaah.html"><span>الرضاع</span><span class="en" lang="en" dir="ltr">Rada'ah</span></a>
+                <a href="practice.html"><span>تدريب</span><span class="en" lang="en" dir="ltr">Practice</span></a>
+            </nav>
+            <div class="header-actions">
+                <button type="button" class="icon-btn search-trigger" data-action="search" aria-label="بحث · Search">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <span class="label">بحث</span><kbd>/</kbd>
+                </button>
+                <button type="button" class="icon-btn" data-action="print" aria-label="طباعة · Print" title="Print">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="7" y="14" width="10" height="7" rx="1"/><path d="M7 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>
+                </button>
+                <button type="button" class="icon-btn" data-action="theme" aria-label="Theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
 
-            const toggleArea = (index) => {
-                setExpandedAreas(prev => ({...prev, [index]: !prev[index]}));
-            };
+    <main id="main" class="container page" style="--hero-c: var(--t-makharij)">
+        <noscript><p class="noscript">هذا الموقع يحتاج إلى تفعيل JavaScript لعرض الجداول والتدريب. <span lang="en" dir="ltr">Please enable JavaScript to view the tables and practice.</span></p></noscript>
 
-            const setAreaLetter = (index, letter) => {
-                setHighlightedLetters(prev => ({...prev, [index]: letter}));
-            };
+        <section class="hero" data-glyph="خ" aria-labelledby="page-title">
+            <p class="hero-kicker"><span class="en" lang="en" dir="ltr">03 · Makharij</span></p>
+            <h1 id="page-title">مخارج الحروف <span class="en h-en" lang="en" dir="ltr">Interactive Makharij Chart</span></h1>
+            <p class="hero-lead">اضغط على أي حرف لمعرفة مخرجه، أو صفِّ الحروف حسب المنطقة.
+                <span class="en" lang="en" dir="ltr">Tap any letter to review where it is pronounced, or filter by articulation area.</span></p>
+        </section>
 
-            const getLetterDescription = (area, letter) => {
-                const foundLetter = area.letters.find(l => l.letter === letter);
-                return foundLetter ? foundLetter.description : "";
-            };
+        <section class="explorer" id="makharij-explorer" aria-label="Letter explorer">
+            <div class="card explorer-map">
+                <div class="filter-row" id="area-filter" role="group" aria-label="Filter by area"></div>
+                <div id="letter-map"></div>
+            </div>
+            <aside class="letter-detail is-empty" id="letter-detail" aria-live="polite"></aside>
+        </section>
 
-            return (
-                <main className="site-shell">
-                    <header className="site-header">
-                        <a className="brand" href="index.html">
-                            <span className="brand-mark">ع</span>
-                            <span className="brand-text">
-                                <span className="brand-title">Arabic Study Hub</span>
-                                <span className="brand-subtitle">Clear grammar notes for students</span>
-                            </span>
-                        </a>
-                        <nav className="nav-links" aria-label="Main navigation">
-                            <a href="index.html">الأعداد</a>
-                            <a className="active" href="makharij-chart.html">مخارج الحروف</a>
-                            <a href="nahw.html">Nahw</a>
-                            <a href="radaah.html">الرضاع</a>
-                        </nav>
-                    </header>
+        <section class="section" aria-labelledby="areas-title">
+            <div class="section-head">
+                <h2 id="areas-title">المناطق بالتفصيل <span class="en h-en" lang="en" dir="ltr">Every area, in full</span></h2>
+            </div>
+            <div class="area-list" id="area-list"></div>
+            <p class="tip" id="makharij-tip"></p>
+        </section>
 
-                    <section className="hero">
-                        <h1>Interactive Makharij Chart</h1>
-                        <p>Open each articulation area and hover over a letter to review where it is pronounced.</p>
-                    </section>
+        <section id="practice" data-decks="makharij" aria-labelledby="practice-title"></section>
 
-                    <div className="page-stack">
-                        {makharijData.map((area, index) => (
-                            <section key={index} className="area-card">
-                                <button
-                                    className="area-button"
-                                    onClick={() => toggleArea(index)}
-                                    aria-expanded={Boolean(expandedAreas[index])}
-                                >
-                                    <span className="area-title rtl" dir="rtl">{area.area}</span>
-                                    <span aria-hidden="true">{expandedAreas[index] ? "Collapse" : "Open"}</span>
-                                </button>
-                                {expandedAreas[index] && (
-                                    <div className="area-panel">
-                                        <p className="rtl" dir="rtl">{area.description}</p>
-                                        {area.letters && (
-                                            <div className="letter-grid" dir="rtl">
-                                                {area.letters.map((item, letterIndex) => (
-                                                    <button
-                                                        key={letterIndex}
-                                                        className={"letter-chip " + (highlightedLetters[index] === item.letter ? "is-active" : "")}
-                                                        onMouseEnter={() => setAreaLetter(index, item.letter)}
-                                                        onFocus={() => setAreaLetter(index, item.letter)}
-                                                        type="button"
-                                                    >
-                                                        {item.letter}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-                                        {area.letters && (
-                                            <p className={"description-box rtl " + (!highlightedLetters[index] ? "is-empty" : "")} dir="rtl">
-                                                {highlightedLetters[index] ? (
-                                                    <React.Fragment>
-                                                        <strong>{highlightedLetters[index]}</strong>: {getLetterDescription(area, highlightedLetters[index])}
-                                                    </React.Fragment>
-                                                ) : (
-                                                    "مرر فوق حرف لعرض مخرجه."
-                                                )}
-                                            </p>
-                                        )}
-                                        {area.details && (
-                                            <ul className="rtl" dir="rtl">
-                                                {area.details.map((detail, detailIndex) => (
-                                                    <li key={detailIndex}>
-                                                        <strong>{detail.name}</strong>: {detail.position}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </div>
-                                )}
-                            </section>
-                        ))}
-                    </div>
+        <p class="print-only print-foot">مخارج الحروف · Interactive Makharij Chart · Arabic Study Hub</p>
+    </main>
 
-                    <p className="student-tip">Study tip: open one area at a time, say each letter slowly, then compare the description with your mouth position.</p>
-                </main>
-            );
-        };
-
-        ReactDOM.render(<InteractiveMakharijChart />, document.getElementById("root"));
-    </script>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span><strong lang="en" dir="ltr">Arabic Study Hub</strong> · ملخصات واضحة للطلاب · <span data-year></span></span>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="index.html">الرئيسية</a>
+                <a href="numbers.html">الأعداد</a>
+                <a href="nahw.html">النحو</a>
+                <a href="makharij-chart.html">المخارج</a>
+                <a href="radaah.html">الرضاع</a>
+                <a href="practice.html">تدريب</a>
+            </nav>
+        </div>
+    </footer>
 </body>
 </html>

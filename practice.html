@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-page="nahw">
+<html lang="ar" dir="rtl" data-page="practice">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النحو: علامات الإعراب · Nahw · Arabic Study Hub</title>
-    <meta name="description" content="Nahw comparison chart: rafa, nasb and jarr markers for singular, plural, dual, the six nouns and estimated i'rab, with Arabic examples and a quiz.">
+    <title>تدريب · Practice · Arabic Study Hub</title>
+    <meta name="description" content="Mixed quiz and flashcards across Arabic numbers, nahw and makharij. Pick your topics and test yourself.">
     <meta name="theme-color" content="#f6f4ee">
-    <meta property="og:title" content="النحو: علامات الإعراب · Nahw · Arabic Study Hub">
-    <meta property="og:description" content="Nahw comparison chart: rafa, nasb and jarr markers for singular, plural, dual, the six nouns and estimated i'rab, with Arabic examples and a quiz.">
+    <meta property="og:title" content="تدريب · Practice · Arabic Study Hub">
+    <meta property="og:description" content="Mixed quiz and flashcards across Arabic numbers, nahw and makharij. Pick your topics and test yourself.">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d6b64'/%3E%3Ctext x='32' y='44' font-family='Amiri,serif' font-size='40' font-weight='700' text-anchor='middle' fill='%23fff'%3E%D8%B9%3C/text%3E%3C/svg%3E">
     <script>
@@ -41,10 +41,10 @@
             </a>
             <nav class="nav" aria-label="Main navigation">
                 <a href="numbers.html"><span>الأعداد</span><span class="en" lang="en" dir="ltr">Numbers</span></a>
-                <a href="nahw.html" aria-current="page"><span>النحو</span><span class="en" lang="en" dir="ltr">Nahw</span></a>
+                <a href="nahw.html"><span>النحو</span><span class="en" lang="en" dir="ltr">Nahw</span></a>
                 <a href="makharij-chart.html"><span>المخارج</span><span class="en" lang="en" dir="ltr">Makharij</span></a>
                 <a href="radaah.html"><span>الرضاع</span><span class="en" lang="en" dir="ltr">Rada'ah</span></a>
-                <a href="practice.html"><span>تدريب</span><span class="en" lang="en" dir="ltr">Practice</span></a>
+                <a href="practice.html" aria-current="page"><span>تدريب</span><span class="en" lang="en" dir="ltr">Practice</span></a>
             </nav>
             <div class="header-actions">
                 <button type="button" class="icon-btn search-trigger" data-action="search" aria-label="بحث · Search">
@@ -61,29 +61,20 @@
         </div>
     </header>
 
-    <main id="main" class="container page" style="--hero-c: var(--t-nahw)">
+    <main id="main" class="container page">
         <noscript><p class="noscript">هذا الموقع يحتاج إلى تفعيل JavaScript لعرض الجداول والتدريب. <span lang="en" dir="ltr">Please enable JavaScript to view the tables and practice.</span></p></noscript>
 
-        <div id="nahw-page">
-            <section class="hero" data-glyph="ن" aria-labelledby="page-title">
-                <p class="hero-kicker"><span class="en" lang="en" dir="ltr">02 · Nahw</span></p>
-                <h1 id="page-title">علامات الإعراب <span class="en h-en" lang="en" dir="ltr">Nahw — rafa, nasb and jarr at a glance</span></h1>
-                <p class="hero-lead">مقارنة واضحة لعلامات الرفع والنصب والجر مع أمثلة عربية لكل نوع.
-                    <span class="en" lang="en" dir="ltr">A cleaner comparison chart for reviewing rafa, nasb, and jarr patterns with examples in Arabic.</span></p>
-            </section>
+        <section class="hero" data-glyph="؟" aria-labelledby="page-title">
+            <p class="hero-kicker"><span class="en" lang="en" dir="ltr">Practice</span></p>
+            <h1 id="page-title">تدريب شامل <span class="en h-en" lang="en" dir="ltr">Mixed practice across every topic</span></h1>
+            <p class="hero-lead">اختر المواضيع، ثم اختبر نفسك أو راجع بالبطاقات. تُحفظ أفضل نتيجة لكل مجموعة على جهازك.
+                <span class="en" lang="en" dir="ltr">Pick your topics, then quiz yourself or review with flashcards. Your best score for each mix is saved on this device.</span></p>
+        </section>
 
-            <div class="toolbar" role="group" aria-label="Table tools">
-                <div class="legend" id="case-legend"></div>
-                <span class="spacer"></span>
-                <button type="button" class="btn btn-toggle" data-cover-toggle aria-pressed="false">وضع المراجعة</button>
-            </div>
+        <section id="practice" data-decks="numbers,nahw,makharij" data-selectable data-length="15"
+            data-title="اختبار مختلط" data-title-en="Mixed quiz" aria-labelledby="practice-title"></section>
 
-            <div class="nahw-groups" id="nahw-groups"></div>
-        </div>
-
-        <section id="practice" data-decks="nahw" aria-labelledby="practice-title"></section>
-
-        <p class="print-only print-foot">النحو: علامات الإعراب · Nahw · Arabic Study Hub</p>
+        <p class="print-only print-foot">تدريب · Practice · Arabic Study Hub</p>
     </main>
 
     <footer class="site-footer">

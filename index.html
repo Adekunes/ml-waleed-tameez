@@ -1,141 +1,137 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-page="home">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قواعد الأعداد في اللغة العربية</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Arabic Study Hub · ملخصات واضحة للطلاب</title>
+    <meta name="description" content="Clear Arabic study notes with quizzes and flashcards: numbers, nahw (i'rab), makharij al-huruf and rada'ah.">
+    <meta name="theme-color" content="#f6f4ee">
+    <meta property="og:title" content="Arabic Study Hub · ملخصات واضحة للطلاب">
+    <meta property="og:description" content="Clear Arabic study notes with quizzes and flashcards: numbers, nahw (i'rab), makharij al-huruf and rada'ah.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d6b64'/%3E%3Ctext x='32' y='44' font-family='Amiri,serif' font-size='40' font-weight='700' text-anchor='middle' fill='%23fff'%3E%D8%B9%3C/text%3E%3C/svg%3E">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem("ash-theme");
+                if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/data.js"></script>
+    <script defer src="assets/js/site.js"></script>
+    <script defer src="assets/js/practice.js"></script>
+    <script defer src="assets/js/pages.js"></script>
 </head>
 <body>
-    <main class="site-shell">
-        <header class="site-header">
-            <a class="brand" href="index.html">
-                <span class="brand-mark">ع</span>
+    <a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Arabic Study Hub — الرئيسية">
+                <span class="brand-mark" aria-hidden="true">ع</span>
                 <span class="brand-text">
-                    <span class="brand-title">Arabic Study Hub</span>
-                    <span class="brand-subtitle">Clear grammar notes for students</span>
+                    <span class="brand-title" lang="en" dir="ltr">Arabic Study Hub</span>
+                    <span class="brand-sub">ملخصات واضحة للطلاب</span>
                 </span>
             </a>
-            <nav class="nav-links" aria-label="Main navigation">
-                <a class="active" href="index.html">الأعداد</a>
-                <a href="makharij-chart.html">مخارج الحروف</a>
-                <a href="nahw.html">Nahw</a>
-                <a href="radaah.html">الرضاع</a>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="numbers.html"><span>الأعداد</span><span class="en" lang="en" dir="ltr">Numbers</span></a>
+                <a href="nahw.html"><span>النحو</span><span class="en" lang="en" dir="ltr">Nahw</span></a>
+                <a href="makharij-chart.html"><span>المخارج</span><span class="en" lang="en" dir="ltr">Makharij</span></a>
+                <a href="radaah.html"><span>الرضاع</span><span class="en" lang="en" dir="ltr">Rada'ah</span></a>
+                <a href="practice.html"><span>تدريب</span><span class="en" lang="en" dir="ltr">Practice</span></a>
             </nav>
-        </header>
+            <div class="header-actions">
+                <button type="button" class="icon-btn search-trigger" data-action="search" aria-label="بحث · Search">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <span class="label">بحث</span><kbd>/</kbd>
+                </button>
+                <button type="button" class="icon-btn" data-action="print" aria-label="طباعة · Print" title="Print">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="7" y="14" width="10" height="7" rx="1"/><path d="M7 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>
+                </button>
+                <button type="button" class="icon-btn" data-action="theme" aria-label="Theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
 
-        <section class="hero">
-            <h1>قواعد الأعداد في اللغة العربية</h1>
-            <p>جدول سريع ومنظم لمراجعة تركيب العدد، جنسه، وحالة المعدود مع ملاحظات مختصرة للطلاب.</p>
-        </section>
+    <main id="main" class="container page">
+        <noscript><p class="noscript">هذا الموقع يحتاج إلى تفعيل JavaScript لعرض الجداول والتدريب. <span lang="en" dir="ltr">Please enable JavaScript to view the tables and practice.</span></p></noscript>
 
-        <section class="quick-grid" aria-label="Study sections">
-            <a class="quick-card" href="index.html">
-                <strong>الأعداد</strong>
-                <span>قواعد المطابقة والمخالفة</span>
-            </a>
-            <a class="quick-card" href="makharij-chart.html">
-                <strong>مخارج الحروف</strong>
-                <span>تفاعل مع مناطق النطق</span>
-            </a>
-            <a class="quick-card" href="nahw.html">
-                <strong>Nahw</strong>
-                <span>إعراب بالحركة والحروف</span>
-            </a>
-            <a class="quick-card" href="radaah.html">
-                <strong>الرضاع</strong>
-                <span>رسوم بسيطة للعلاقات</span>
-            </a>
-        </section>
-
-        <section class="study-card">
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>العدد</th>
-                            <th>تركيب</th>
-                            <th>جنس العدد</th>
-                            <th>المعدود مفرد أم جمع</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="number">١-٢</td>
-                            <td>نعت منعوت</td>
-                            <td>مطابق للمعدود</td>
-                            <td>مفرد</td>
-                        </tr>
-                        <tr>
-                            <td class="number">٣-١٠</td>
-                            <td>مضاف مضاف إليه</td>
-                            <td>مخالف للمعدود</td>
-                            <td>جمع مجرور</td>
-                        </tr>
-                        <tr>
-                            <td class="number">١١-١٢</td>
-                            <td>تمييز مفرد منصوب</td>
-                            <td>الشق الأول: تابع للمعدود<br>الشق الثاني: لا يتغير</td>
-                            <td>مفرد منصوب</td>
-                        </tr>
-                        <tr>
-                            <td class="number">١٣-١٩</td>
-                            <td>تمييز مفرد منصوب</td>
-                            <td>الشق الأول: مخالف للمعدود<br>الشق الثاني: لا يتغير</td>
-                            <td>مفرد منصوب</td>
-                        </tr>
-                        <tr>
-                            <td class="number">٢٠</td>
-                            <td>تمييز مفرد منصوب</td>
-                            <td>لا يتغير</td>
-                            <td>مفرد منصوب</td>
-                        </tr>
-                        <tr>
-                            <td class="number">٢١-٢٢</td>
-                            <td>تمييز مفرد منصوب</td>
-                            <td>الشق الأول: لا يتغير<br>الشق الثاني: تابع للمعدود</td>
-                            <td>مفرد منصوب</td>
-                        </tr>
-                        <tr>
-                            <td class="number">٢٣-٢٩</td>
-                            <td>تمييز مفرد منصوب</td>
-                            <td>الشق الأول: مخالف للمعدود<br>الشق الثاني: لا يتغير</td>
-                            <td>مفرد منصوب</td>
-                        </tr>
-                        <tr>
-                            <td class="number">٣٠-٩٩</td>
-                            <td>على الرسم ما تقدّم</td>
-                            <td>لا يتغير</td>
-                            <td>مفرد منصوب</td>
-                        </tr>
-                        <tr>
-                            <td class="number">١٠٠، ٢٠٠، ٣٠٠</td>
-                            <td>مضاف إليه</td>
-                            <td>لا يتغير</td>
-                            <td>مفرد مجرور</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section class="hero" data-glyph="ع" aria-labelledby="home-title">
+            <p class="hero-kicker"><span class="en" lang="en" dir="ltr">Arabic Study Hub</span></p>
+            <h1 id="home-title">ملخصات واضحة للمراجعة السريعة <span class="en h-en" lang="en" dir="ltr">Clear notes for fast revision — then test yourself.</span></h1>
+            <p class="hero-lead">الأعداد، والإعراب، ومخارج الحروف، والرضاع — في جداول منظمة مع اختبارات وبطاقات للمراجعة.
+                <span class="en" lang="en" dir="ltr">Numbers, i'rab, makharij and rada'ah in clean tables, with quizzes and flashcards built in.</span></p>
+            <div class="hero-actions">
+                <button type="button" class="btn btn-lg search-cta" data-action="search">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    ابحث في كل الملخصات… <kbd>/</kbd>
+                </button>
+                <a class="btn btn-lg btn-primary" href="practice.html">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+                    ابدأ التدريب <span class="en" lang="en" dir="ltr">Start practice</span>
+                </a>
             </div>
         </section>
 
-        <section class="note-grid">
-            <article class="note-card">
-                <h2>ملاحظة هامة</h2>
-                <p>الأعداد من ١١ إلى ١٩ مبنية. في هذا السياق، تعني "مبنية" أن هذه الأعداد لا تتغير في إعرابها بصرف النظر عن موقعها في الجملة.</p>
-                <p><strong>Important Note:</strong> Numbers from 11 to 19 are <em>mabni</em> (indeclinable), meaning they do not change form based on syntactic position.</p>
-            </article>
-
-            <article class="note-card">
-                <h2>التمييز والمميز في الأعداد</h2>
-                <ul>
-                    <li><strong>ثلاثمائة (٣٠٠):</strong> التمييز دائماً مفرد مجرور، مثل "ثلاثمائة كتاب".</li>
-                    <li><strong>ثلاثة آلاف (٣٠٠٠):</strong> التمييز مفرد مجرور أيضاً، مثل "ثلاثة آلاف كتاب".</li>
-                    <li><strong>مائتان (٢٠٠):</strong> التمييز مفرد مجرور.</li>
-                    <li><strong>ألفان (٢٠٠٠):</strong> التمييز مفرد مجرور ويوضح المعدود.</li>
-                </ul>
-            </article>
+        <section class="section" aria-labelledby="topics-title">
+            <div class="section-head">
+                <h2 id="topics-title">المواضيع <span class="en h-en" lang="en" dir="ltr">Topics</span></h2>
+            </div>
+            <div class="topic-grid" id="topic-grid"></div>
         </section>
+
+        <section class="section" aria-labelledby="how-title">
+            <div class="section-head">
+                <h2 id="how-title">طريقة المذاكرة <span class="en h-en" lang="en" dir="ltr">How to study here</span></h2>
+            </div>
+            <div class="steps">
+                <article class="step">
+                    <span class="step-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/><path d="M8 7h7"/></svg></span>
+                    <h3>اقرأ <span class="en" lang="en" dir="ltr">Read</span></h3>
+                    <p>راجع الجدول والملاحظات مرة واحدة بتركيز. <span class="en" lang="en" dir="ltr">Go through the table and notes once, carefully.</span></p>
+                </article>
+                <article class="step">
+                    <span class="step-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.1A9.9 9.9 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4"/><path d="M6.6 6.6A17 17 0 0 0 2 12s3.6 7 10 7a9.6 9.6 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></span>
+                    <h3>غطِّ <span class="en" lang="en" dir="ltr">Cover</span></h3>
+                    <p>فعّل «وضع المراجعة» وحاول تذكّر كل خانة قبل كشفها. <span class="en" lang="en" dir="ltr">Turn on Cover mode and recall each cell before revealing it.</span></p>
+                </article>
+                <article class="step">
+                    <span class="step-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
+                    <h3>اختبر <span class="en" lang="en" dir="ltr">Test</span></h3>
+                    <p>أجب عن الاختبار أو قلّب البطاقات، ثم أعد الأخطاء فقط. <span class="en" lang="en" dir="ltr">Take the quiz or flip the cards, then retry only your mistakes.</span></p>
+                </article>
+            </div>
+            <div class="shortcut-row" dir="ltr" lang="en" aria-label="Keyboard shortcuts">
+                <span><kbd>/</kbd> <span class="en" lang="en" dir="ltr">Search</span></span>
+                <span><kbd>1</kbd>–<kbd>4</kbd> <span class="en" lang="en" dir="ltr">Answer</span></span>
+                <span><kbd>Enter</kbd> <span class="en" lang="en" dir="ltr">Next question</span></span>
+                <span><kbd>Space</kbd> <span class="en" lang="en" dir="ltr">Flip card</span></span>
+            </div>
+        </section>
+
+        <p class="print-only print-foot">Arabic Study Hub · ملخصات واضحة للطلاب</p>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span><strong lang="en" dir="ltr">Arabic Study Hub</strong> · ملخصات واضحة للطلاب · <span data-year></span></span>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="index.html">الرئيسية</a>
+                <a href="numbers.html">الأعداد</a>
+                <a href="nahw.html">النحو</a>
+                <a href="makharij-chart.html">المخارج</a>
+                <a href="radaah.html">الرضاع</a>
+                <a href="practice.html">تدريب</a>
+            </nav>
+        </div>
+    </footer>
 </body>
 </html>
